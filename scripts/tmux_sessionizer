@@ -1,0 +1,10 @@
+#! /bin/bash
+
+session=$(find  ~ ~/MyEducator/ ~/MyEducator/symphony ~/SDMM/** ~/Personal/** -not -path '*/.*' -type d -maxdepth 1 | fzf --query "$1" --select-1 --exact ) 
+session_name=$(basename "$session" | tr . _)
+
+if ! tmux has-session -t $session_name 2> /dev/null ; then
+ tmux new-session -d -s $session_name -c $session
+fi 
+
+tmux switch-client -t $session_name
