@@ -1,0 +1,10 @@
+[user]
+	email = lsboecken@gmail.com
+	name = Lennart Boecken
+
+[core]
+	excludesfile = /Users/lennart/.gitignore
+[rerere]
+	enabled = true
+[push]
+	autoSetupRemote = true
