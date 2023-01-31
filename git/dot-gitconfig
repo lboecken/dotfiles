@@ -4,6 +4,7 @@
 
 [core]
 	excludesfile = /Users/lennart/.gitignore
+	editor = vim
 [rerere]
 	enabled = true
 [push]
