@@ -105,3 +105,7 @@ alias nw="~/bin/tmux_newwindow"
 alias ts="~/bin/tmux_sessionizer"
 alias dkcons="~/bin/docker_current_containers"
 alias dkbash="~/bin/docker_run_bash_on_container"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
