@@ -106,6 +106,12 @@ alias ts="~/bin/tmux_sessionizer"
 alias dkcons="~/bin/docker_current_containers"
 alias dkbash="~/bin/docker_run_bash_on_container"
 alias ls="ls -a --color=auto"
+alias pbcopy=’xsel --clipboard --input’
+alias pbpaste=’xsel --clipboard --output’
+
+
+
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
