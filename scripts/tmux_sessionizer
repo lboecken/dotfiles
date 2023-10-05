@@ -1,6 +1,10 @@
-#! /bin/bash
+#!/bin/bash
+if [[ $# -eq 1 ]];then
+    session=$1
+else
+    session=$(find  ~ ~/MyEducator/ ~/MyEducator/symphony ~/SDMM/** ~/Personal/**  -type d -maxdepth 1 | fzf --query "$1" --select-1 --exact ) 
+fi
 
-session=$(find  ~ ~/MyEducator/ ~/MyEducator/symphony ~/SDMM/** ~/Personal/** -not -path '*/.*' -type d -maxdepth 1 | fzf --query "$1" --select-1 --exact ) 
 session_name=$(basename "$session" | tr . _)
 
 if ! tmux has-session -t $session_name 2> /dev/null ; then
