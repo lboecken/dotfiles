@@ -1,2 +1,20 @@
-require("lennart")
-print("hello")
+require("lennart.plugins_setup")
+
+require("lennart.core.options")
+require("lennart.core.keymaps")
+require("lennart.core.colorscheme")
+
+require("lennart.plugins.lsp-zero")
+require("lennart.plugins.undotree")
+require("lennart.plugins.harpoon")
+require("lennart.plugins.telescope")
+require("lennart.plugins.treesitter")
+
+-- require("lennart.plugins.fugitive")
+-- require("lennart.plugins.comment")
+-- require("lennart.plugins.gitsigns")
+-- require("lennart.plugins.nvim-tree")
+-- require("lennart.plugins.lualine")
+-- require("lennart.plugins.nvim-toggler")
+-- require("lennart.plugins.dressing")
+-- require("lennart.plugins.autopairs")
