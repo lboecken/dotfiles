@@ -1,5 +1,6 @@
-vim.api.nvim_create_user_command('PS', function()
-    local log_name = os.date("%d%m%y%H%M")
-    local packer = require('packer')
-    packer.sync(log_name)
-end, {})
+vim.api.nvim_create_user_command('Ps', function()
+    local date = os.date("%d%m%y%H%M")
+    local log_name = date .. ".json"
+    require('packer').snapshot(log_name)
+    print('Packer Snapshot taken & PackerSync executed')
+end, {nargs = 0})
