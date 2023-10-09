@@ -1,0 +1,5 @@
+vim.api.nvim_create_user_command('PS', function()
+    local log_name = os.date("%d%m%y%H%M")
+    local packer = require('packer')
+    packer.sync(log_name)
+end, {})

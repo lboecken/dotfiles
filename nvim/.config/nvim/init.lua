@@ -3,6 +3,7 @@ require("lennart.plugins_setup")
 require("lennart.core.options")
 require("lennart.core.keymaps")
 require("lennart.core.colorscheme")
+require("lennart.core.cmd")
 
 require("lennart.plugins.lsp-zero")
 require("lennart.plugins.undotree")

@@ -105,25 +105,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias vs="code ."
-alias nw="~/bin/tmux_newwindow"
-alias ts="~/bin/tmux_sessionizer"
-alias dkcons="~/bin/docker_current_containers"
-alias dkbash="~/bin/docker_run_bash_on_container"
-alias dkid="~/bin/docker_container_id"
-alias ls="ls -a --color=auto"
-alias gre="~/bin/git_rebase"
-alias gsm="git switch master"
-alias vim="nvim"
-# Commands to quickly navigate between projects
-alias snap="ts snap"
-alias symserv="ts services"
-alias symapp="ts symapps"
-
-#bitwarden
-alias bw="~/bin/bw"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

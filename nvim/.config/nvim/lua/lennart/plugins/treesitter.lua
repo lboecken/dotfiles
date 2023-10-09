@@ -41,3 +41,4 @@ treesitter.setup({
     },
     auto_install = true
 })
+
