@@ -4,7 +4,7 @@ vim.api.nvim_create_user_command('Ps', function()
         print('Packer not installed')
         return
     end
-    
+
     local date = os.date("%d%m%y%H%M")
     local log_name = date .. ".json"
     packer.snapshot(log_name)
