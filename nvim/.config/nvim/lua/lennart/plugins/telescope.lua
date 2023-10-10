@@ -16,7 +16,7 @@ if not builtin_setup then
     return
 end
 
--- telescope.load_extension("fzf")
+telescope.load_extension("fzf")
 
 -- Custom Keybinds
 
