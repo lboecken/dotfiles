@@ -46,10 +46,22 @@ return require('packer').startup({
         use { "windwp/nvim-autopairs", lock = true }
 
         -- Commenting with gc
-        use{ "numToStr/Comment.nvim", lock = true }
+        use { "numToStr/Comment.nvim", lock = true }
 
         -- File Explorer
-        use({ "nvim-tree/nvim-tree.lua", lock = true })
+        use { "nvim-tree/nvim-tree.lua", lock = true }
+        -- Git side bar markers
+        use { 'lewis6991/gitsigns.nvim', lock = true }
+        -- Pretty status bar
+        use {
+            'nvim-lualine/lualine.nvim',
+            lock = true,
+            requires = { 'nvim-tree/nvim-web-devicons', opt = true, lock = true }
+        }
+        -- Inverter for keywords
+        use { 'nguyenvukhang/nvim-toggler', lock = true }
+        -- More make stuff pretty
+          use {'stevearc/dressing.nvim', lock = true}
     end,
     config = { snapshot_path = "/Users/lennart/dotfiles/packer_logs" }
 })
