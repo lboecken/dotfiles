@@ -18,6 +18,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- save files
+vim.keymap.set({"n", "v"},"<leader>fs", ":w<CR>" )
+vim.keymap.set({"n", "v"},"<leader>fS", ":wall<CR>" )
 
 -- paste over word w/o losing original paste
 vim.keymap.set("x", "<leader>p", [["_dP]])

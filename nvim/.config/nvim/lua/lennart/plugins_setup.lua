@@ -61,7 +61,9 @@ return require('packer').startup({
         -- Inverter for keywords
         use { 'nguyenvukhang/nvim-toggler', lock = true }
         -- More make stuff pretty
-          use {'stevearc/dressing.nvim', lock = true}
+        use { 'stevearc/dressing.nvim', lock = true }
+        -- smooth scroll
+        use { 'karb94/neoscroll.nvim', lock = true }
     end,
     config = { snapshot_path = "/Users/lennart/dotfiles/packer_logs" }
 })
