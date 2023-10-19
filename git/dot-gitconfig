@@ -11,3 +11,5 @@
 	autoSetupRemote = true
 [safe]
 	directory = /home/lennart/snap
+[help]
+    autocorrect = 1
