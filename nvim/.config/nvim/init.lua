@@ -10,7 +10,6 @@ require("lennart.plugins.undotree")
 require("lennart.plugins.harpoon")
 require("lennart.plugins.telescope")
 require("lennart.plugins.treesitter")
-
 require("lennart.plugins.fugitive")
 require("lennart.plugins.comment")
 require("lennart.plugins.gitsigns")
@@ -19,4 +18,5 @@ require("lennart.plugins.lualine")
 require("lennart.plugins.nvim-toggler")
 require("lennart.plugins.dressing")
 require("lennart.plugins.autopairs")
+require("lennart.plugins.nvim-scroll")
 

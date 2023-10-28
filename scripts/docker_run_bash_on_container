@@ -6,6 +6,6 @@ containerName=$(dkcons  "$1" )
 
 [[ -z "$containerName" ]] && echo "No container chosen" && exit 1
 
-docker exec -it $containerName /bin/zsh
+docker exec -it $containerName /bin/sh
 
 
