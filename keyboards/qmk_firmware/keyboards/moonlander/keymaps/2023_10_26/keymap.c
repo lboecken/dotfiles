@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "print.h"
 #include "keymap_german.h"
 #include "keymap_nordic.h"
 #include "keymap_french.h"
@@ -63,6 +64,33 @@ enum custom_keycodes {
   ST_MACRO_11,
   ST_MACRO_12,
 };
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+//   debug_matrix=true;
+//   debug_keyboard=true;
+  //debug_mouse=true;
+}
+
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+        case KC_PLUS:
+        case KC_LBRACKET:
+        case KC_LCBR:
+        case KC_LEFT_PAREN:
+        case KC_AMPERSAND:
+        case KC_EQUAL:
+        case KC_RPRN:
+        case KC_RCBR:
+        case KC_RBRACKET:
+        case KC_ASTR:
+            return true;
+        default:
+            return false;
+    }
+}
+
 
 const key_override_t plus_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_1);
 const key_override_t lbrc_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_LBRACKET, KC_2);
@@ -160,6 +188,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
