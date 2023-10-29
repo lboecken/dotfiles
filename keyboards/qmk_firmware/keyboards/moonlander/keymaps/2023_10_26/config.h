@@ -17,8 +17,17 @@
 #define LAYER_STATE_8BIT
 #define COMBO_COUNT 1
 
+// =========
+// AUTOSHIFT
+// =========
 #undef AUTO_SHIFT_TIMEOUT
 #define AUTO_SHIFT_TIMEOUT 150
+// Characters handled via autoshift.c
+#define NO_AUTO_SHIFT_ALPHA
+#define NO_AUTO_SHIFT_NUMERIC
+#define NO_AUTO_SHIFT_TAB
+#define NO_AUTO_SHIFT_SPECIAL
+
 
 
 #undef ENABLE_RGB_MATRIX_ALPHAS_MODS

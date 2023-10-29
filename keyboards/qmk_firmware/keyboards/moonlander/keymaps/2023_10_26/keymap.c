@@ -1,52 +1,9 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "print.h"
-#include "keymap_german.h"
-#include "keymap_nordic.h"
-#include "keymap_french.h"
-#include "keymap_spanish.h"
-#include "keymap_hungarian.h"
-#include "keymap_swedish.h"
-#include "keymap_br_abnt2.h"
-#include "keymap_canadian_multilingual.h"
-#include "keymap_german_ch.h"
-#include "keymap_jp.h"
-#include "keymap_korean.h"
-#include "keymap_bepo.h"
-#include "keymap_italian.h"
-#include "keymap_slovenian.h"
-#include "keymap_lithuanian_azerty.h"
-#include "keymap_danish.h"
-#include "keymap_norwegian.h"
-#include "keymap_portuguese.h"
-#include "keymap_contributions.h"
-#include "keymap_czech.h"
-#include "keymap_romanian.h"
-#include "keymap_russian.h"
-#include "keymap_uk.h"
-#include "keymap_estonian.h"
-#include "keymap_belgian.h"
 #include "keymap_us_international.h"
-#include "keymap_croatian.h"
-#include "keymap_turkish_q.h"
-#include "keymap_slovak.h"
 
-#define KC_MAC_UNDO LGUI(KC_Z)
-#define KC_MAC_CUT LGUI(KC_X)
-#define KC_MAC_COPY LGUI(KC_C)
-#define KC_MAC_PASTE LGUI(KC_V)
-#define KC_PC_UNDO LCTL(KC_Z)
-#define KC_PC_CUT LCTL(KC_X)
-#define KC_PC_COPY LCTL(KC_C)
-#define KC_PC_PASTE LCTL(KC_V)
-#define ES_LESS_MAC KC_GRAVE
-#define ES_GRTR_MAC LSFT(KC_GRAVE)
-#define ES_BSLS_MAC ALGR(KC_6)
-#define NO_PIPE_ALT KC_GRAVE
-#define NO_BSLS_ALT KC_EQUAL
-#define LSA_T(kc) MT(MOD_LSFT | MOD_LALT, kc)
-#define BP_NDSH_MAC ALGR(KC_8)
-#define SE_SECT_MAC ALGR(KC_6)
+#include "keymap.h"
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -65,58 +22,6 @@ enum custom_keycodes {
   ST_MACRO_12,
 };
 
-void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
-  debug_enable=true;
-//   debug_matrix=true;
-//   debug_keyboard=true;
-  //debug_mouse=true;
-}
-
-bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
-    switch(keycode) {
-        case KC_PLUS:
-        case KC_LBRACKET:
-        case KC_LCBR:
-        case KC_LEFT_PAREN:
-        case KC_AMPERSAND:
-        case KC_EQUAL:
-        case KC_RPRN:
-        case KC_RCBR:
-        case KC_RBRACKET:
-        case KC_ASTR:
-            return true;
-        default:
-            return false;
-    }
-}
-
-
-const key_override_t plus_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_1);
-const key_override_t lbrc_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_LBRACKET, KC_2);
-const key_override_t lcbr_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_3);
-const key_override_t lprn_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_4);
-const key_override_t ampr_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_AMPR, KC_5);
-const key_override_t equal_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_EQUAL, KC_6);
-const key_override_t rprn_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_7);
-const key_override_t rcbr_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_RCBR, KC_8);
-const key_override_t rbrc_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_9);
-const key_override_t astr_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_ASTR, KC_0);
-
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &plus_key_override,
-    &lbrc_key_override,
-    &lcbr_key_override,
-    &lprn_key_override,
-    &ampr_key_override,
-    &equal_key_override,
-    &rprn_key_override,
-    &rcbr_key_override,
-    &rbrc_key_override,
-    &astr_key_override,
-    NULL // Null terminate the array of overrides!
-};
-
 
 enum tap_dance_codes {
   DANCE_0,
@@ -133,8 +38,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     KC_ESCAPE,      KC_PLUS,        KC_LBRACKET,    KC_LCBR,        KC_LPRN,        KC_AMPR,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_EQUAL,       KC_RPRN,        KC_RCBR,        KC_RBRACKET,    KC_ASTR,        KC_EXLM,        
     TD(DANCE_0),    KC_SCOLON,      KC_COMMA,       KC_DOT,         KC_P,           KC_Y,           KC_SLASH,                                       KC_BSLASH,      KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           KC_TRANSPARENT, 
-    ALL_T(KC_TAB),  KC_A,           KC_O,           KC_E,           KC_U,           KC_I,           TD(DANCE_1),                                                                    TD(DANCE_4),    KC_D,           KC_H,           KC_T,           KC_N,           KC_S,           KC_TRANSPARENT, 
-    KC_LSHIFT,      KC_QUOTE,       KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_RSHIFT,      
+    ALL_T(KC_TAB),  LCTL_T(KC_A),   LALT_T(KC_O),  LSFT_T(KC_E),    LGUI_T(KC_U),   KC_I,           TD(DANCE_1),                                    TD(DANCE_4),    KC_D,           RGUI_T(KC_H),   RSFT_T(KC_T),   RALT_T(KC_N),   RCTL_T(KC_S),           KC_TRANSPARENT, 
+    KC_LSHIFT,      KC_QUOTE,       KC_Q,           KC_J,           KC_K,           KC_X,                                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_RSHIFT,      
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, TD(DANCE_2),    MO(1),          KC_LSHIFT,                                                                                                      KC_RSHIFT,      MO(4),          TD(DANCE_5),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_BSPACE,      KC_LSHIFT,      TD(DANCE_3),                    KC_LALT,        MT(MOD_RGUI, KC_ENTER),KC_SPACE
   ),
