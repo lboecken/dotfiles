@@ -4,6 +4,11 @@
 #include "keymap_us_international.h"
 
 #include "keymap.h"
+#include "leader.h"
+
+#ifdef CAPS_WORD_ENABLE
+    #include "caps_word.h"
+#endif // CAPS_WORD_ENABLE
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -41,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ALL_T(KC_TAB),  LCTL_T(KC_A),   LALT_T(KC_O),  LSFT_T(KC_E),    LGUI_T(KC_U),   KC_I,           TD(DANCE_1),                                    TD(DANCE_4),    KC_D,           RGUI_T(KC_H),   RSFT_T(KC_T),   RALT_T(KC_N),   RCTL_T(KC_S),           KC_TRANSPARENT, 
     KC_LSHIFT,      KC_QUOTE,       KC_Q,           KC_J,           KC_K,           KC_X,                                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_RSHIFT,      
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, TD(DANCE_2),    MO(1),          KC_LSHIFT,                                                                                                      KC_RSHIFT,      MO(4),          TD(DANCE_5),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_BSPACE,      KC_LSHIFT,      TD(DANCE_3),                    KC_LALT,        MT(MOD_RGUI, KC_ENTER),KC_SPACE
+    KC_BSPACE,      LCTL(KC_B),     KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, MT(MOD_RGUI, KC_ENTER),         KC_SPACE
   ),
   [1] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -93,7 +98,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    
+  if (!process_leader(keycode, record))    { return false; }
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {

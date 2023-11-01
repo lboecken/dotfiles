@@ -1,6 +1,10 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
+#define DELAY_LONG  wait_ms(900)
+#define DELAY       wait_ms(600)
+#define DELAY_SHORT wait_ms(300)
+
 #define KC_MAC_UNDO LGUI(KC_Z)
 #define KC_MAC_CUT LGUI(KC_X)
 #define KC_MAC_COPY LGUI(KC_C)
@@ -22,3 +26,15 @@
 #define __o__ KC_TRANSPARENT
 #define _LYR_ KC_TRANSPARENT  // Used for indicating (in code) which key is being held for the layer
 #define __x__ KC_NO
+
+
+#define KC_CARROT KC_CIRCUMFLEX
+#define KC_CROT   KC_CARROT
+#define KC_KROT   KC_CARROT
+#define KC_PERIOD KC_DOT
+#define KC_DASH   KC_MINUS
+#define KC_TACK   KC_MINUS
+#define KC_STAR   KC_ASTERISK
+#define KC_BANG   KC_EXCLAIM
+#define KC_LPAREN KC_LEFT_PAREN
+#define KC_RPAREN KC_RIGHT_PAREN
