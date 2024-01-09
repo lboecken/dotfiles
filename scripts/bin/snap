@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Check if tmux is running
+# Start it if not
+# Check if tmux has snap session
+#   Switch to snap
+# Setup snap windows
+#   Window 1
+#       Split window horizontally.
+#       Split lower window vertically
+#       Start nvim on upper window
+#       Make lower window smaller
+#   Window 2
+#       Split window vertically
+#       Build docker image in left window
+#       Start server in left window
+#       Start frontend server in right window. 
+# Check if tmux is running.
+line_break="=============="
+
+while getopts "br" flag; do
+ case $flag in
+   b) 
+   tmux kill-session -t snap
+   build_container=true
+   echo "$line_break"
+   echo "Building container!!!!"
+   echo "This will take several minutes to reinstall python deps"
+   echo "Starting in 3 seconds..."
+   echo "$line_break"
+   sleep 3
+   ;;
+   r)
+   echo "$line_break" 
+   echo "Reset snap tmux session"
+   echo "Starting in 3 seconds..."
+   echo "$line_break" 
+   sleep 3
+   tmux kill-session -t snap
+   ;;
+   \?)
+   echo "You done messed up..."
+   exit 2
+   ;;
+ esac
+done
+
+session=$(find  ~ ~/MyEducator ~/MyEducator/symphony ~/Personal/**  -type d -maxdepth 1 | fzf --query "snap" --select-1 --exact ) 
+session_name=$(basename "$session" | tr . _)
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "tmux is NOT running."
+fi
+
+if tmux has-session -t $session_name 2> /dev/null; then
+   tmux switch-client -t $session_name
+   exit 0
+else
+    tmux new-session -d -s $session_name -c $session -n "main"
+
+    # Main window for code editing, git, etc.
+    tmux split-window -l 25% -t "$session_name:main"
+    tmux send-keys -t "$session_name:1.top" "nvim ." Enter
+    
+    # Aux window for docker, etc
+    tmux new-window -a -n "aux" -t "$session_name:main" -c $session
+    tmux split-window -h -t "$session_name:aux" -c $session
+
+    if [[ "$build_container" ]]; then
+        pane_cmd="./dev build && ./dev up"
+    else
+        pane_cmd="./dev up"
+    fi
+    tmux send-keys -t "$session_name:aux.left" "$pane_cmd" Enter
+    tmux split-window -t "$session_name:aux.right" -c $session
+    tmux send-keys -t "$session_name:aux.2" "./dev frontend" Enter
+fi
+
+tmux switch-client -t "$session_name:main"

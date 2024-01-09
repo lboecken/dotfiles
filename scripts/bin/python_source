@@ -1,0 +1,21 @@
+#!/bin/bash
+# Allow to install arbitrary python package at x.x.x version.
+# TODO Allow to install in different python runtimes. 
+# Opens up in vs code. 
+
+#############
+# This script assumes pyenv is installed
+# and that a virtualenv called 'python-source<version-number>' exists
+############
+
+if [[ -z "$1" ]]; then
+    echo "Package name required"
+    exit 2
+fi
+
+if [[ -n "$2" ]]; then
+   ${PYENV_ROOT}/versions/python-source3.10.2/bin/pip3 install "$1==$2"
+fi
+
+/usr/local/bin/code $( ${PYENV_ROOT}/versions/python-source3.10.2/bin/python3 -c "import os; import ${1}; print(os.path.dirname(${1}.__file__))")
+

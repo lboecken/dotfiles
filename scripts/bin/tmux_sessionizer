@@ -1,0 +1,25 @@
+#!/bin/bash
+
+session=$(find  ~ ~/MyEducator ~/MyEducator/symphony ~/Personal/**  -type d -maxdepth 1 | fzf --query "$1" --select-1 --exact ) 
+
+if [[ -z $session ]]; then
+    exit 0
+fi
+
+session_name=$(basename "$session" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux
+    tmux new-session -s $session_name -c $session
+    exit 0
+fi
+
+if ! tmux has-session -t $session_name 2> /dev/null; then
+    tmux new-session -d -s $session_name -c $session
+    echo "tmux created this session"
+fi
+
+tmux switch-client -t $session_name
+echo $session_name
+echo $session
