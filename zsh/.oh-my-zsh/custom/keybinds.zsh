@@ -9,10 +9,11 @@ alias gre="~/bin/git_rebase"
 alias gsm="git switch master"
 alias vim="nvim"
 # Commands to quickly navigate between projects
-alias snap="ts snap"
+alias snap="~/bin/projects/snap"
 alias symserv="ts services"
 alias symapp="ts symapps"
-
+alias dot="ts dotf"
+alias pysrc="~/bin/python_source"
 #bitwarden
 alias bw="~/bin/bw"
 

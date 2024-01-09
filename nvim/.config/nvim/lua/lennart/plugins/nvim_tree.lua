@@ -10,12 +10,11 @@ vim.g.loaded_netrwPlugin = 1
 
 nvimtree.setup({
     filters = {
-        git_ignored = true,
+        git_ignored = false,
         dotfiles = false,
         git_clean = false,
         no_buffer = false,
         custom = { "^.git$" },
-        exclude = { "local.py", ".devhome" },
     },
     git = {
         show_on_open_dirs = false,

@@ -33,5 +33,5 @@ Temporary Items
 # Language Specific
 __pycache__
 package-lock.json
-
+.vscode
 

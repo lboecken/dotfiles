@@ -6,7 +6,7 @@
 	excludesfile = /Users/lennart/.gitignore
 	editor = nvim
 [rerere]
-	enabled = true
+	enabled = false
 [push]
 	autoSetupRemote = true
 [safe]
