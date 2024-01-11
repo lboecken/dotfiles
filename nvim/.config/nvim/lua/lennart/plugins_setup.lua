@@ -21,7 +21,7 @@ return require('packer').startup({
         -- Harpoon
         use { "theprimeagen/harpoon", lock = true }
         -- Undotree
-        use { "mbbill/undotree" }
+        use { "mbbill/undotree", lock = true}
         -- Fugitive
         use { "tpope/vim-fugitive", lock = true }
         -- LSP ZERO
