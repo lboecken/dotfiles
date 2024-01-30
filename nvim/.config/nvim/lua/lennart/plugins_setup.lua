@@ -22,8 +22,6 @@ return require('packer').startup({
         use { "theprimeagen/harpoon", lock = true }
         -- Undotree
         use { "mbbill/undotree", lock = true}
-        -- Fugitive
-        use { "tpope/vim-fugitive", lock = true }
         -- LSP ZERO
         use {
             'VonHeikemen/lsp-zero.nvim',
