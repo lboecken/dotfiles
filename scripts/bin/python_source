@@ -13,9 +13,17 @@ if [[ -z "$1" ]]; then
     exit 2
 fi
 
-if [[ -n "$2" ]]; then
-   ${PYENV_ROOT}/versions/python-source3.10.2/bin/pip3 install "$1==$2"
+PYTHON_VER="${3:=3.10.2}"
+
+if [[ -z $(pyenv virtualenvs | grep "python-source-$PYTHON_VER") ]]; then
+    pyenv virtualenv "$PYTHON_VER" "python-source-$PYTHON_VER"
 fi
 
-/usr/local/bin/code $( ${PYENV_ROOT}/versions/python-source3.10.2/bin/python3 -c "import os; import ${1}; print(os.path.dirname(${1}.__file__))")
+if [[ -n "$2" ]]; then
+   ${PYENV_ROOT}/versions/python-source-${PYTHON_VER}/bin/pip3 install "$1==$2"
+fi
+
+
+
+/usr/local/bin/code $( ${PYENV_ROOT}/versions/python-source-${PYTHON_VER}/bin/python3 -c "import os; import ${1}; print(os.path.dirname(${1}.__file__))")
 
