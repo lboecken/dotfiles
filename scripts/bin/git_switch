@@ -1,0 +1,5 @@
+#!/bin/bash
+
+branch=$(git branch -l | fzf --query "$1"  --select-1 --exact )
+
+git switch $branch
