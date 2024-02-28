@@ -61,7 +61,7 @@ else
     tmux new-session -d -s $session_name -c $session -n "main"
 
     # Main window for code editing, git, etc.
-    tmux split-window -l 25% -t "$session_name:main"
+    tmux split-window -l 25% -t "$session_name:main" -c $session
     tmux send-keys -t "$session_name:1.top" "nvim ." Enter
     
     # Aux window for docker, etc

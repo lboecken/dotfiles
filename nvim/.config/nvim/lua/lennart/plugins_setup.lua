@@ -62,6 +62,8 @@ return require('packer').startup({
         use { 'stevearc/dressing.nvim', lock = true }
         -- smooth scroll
         use { 'karb94/neoscroll.nvim', lock = true }
+        -- obsididan 
+        use { 'epwalsh/obsidian.nvim', lock = true }
     end,
     config = { snapshot_path = "/Users/lennart/dotfiles/packer_logs" }
 })
