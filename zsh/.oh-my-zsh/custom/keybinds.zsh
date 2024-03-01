@@ -12,7 +12,7 @@ alias gsb="~/bin/git_switch"
 
 # neovim 
 alias vim="nvim"
-alias nv ="nvim ."
+alias nv="nvim ."
 
 # scripts
 alias pysrc="~/bin/python_source"
@@ -23,9 +23,9 @@ alias dkid="~/bin/docker_container_id"
 
 # Commands to quickly navigate between projects
 alias snap="~/bin/projects/snap" # Script for nav & tmux setup
-alias symserv="ts services"
-alias symapp="ts symapps"
-alias dotf="ts dotf"
+alias vserv="ts vserv"
+alias vapp="ts vapp"
+alias dtf="ts dotf"
 alias hero="ts hero"
 alias zk="ts zettelkasten"
 

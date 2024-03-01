@@ -4,12 +4,6 @@ if not setup then
     return
 end
 
-local client_setup, client = pcall(obsidian.get_client)
-if not client_setup then
-    print("obsidian.get_client() failed.")
-    return
-end
-
 
 
 obsidian.setup({
@@ -34,10 +28,17 @@ obsidian.setup({
     end,
 })
 
+-- Needs to be called AFTER obsidian.setup
+local client_setup, client = pcall(obsidian.get_client)
+if not client_setup then
+    print("obsidian.get_client() failed.")
+    return
+end
+
 -- Custom Keybinds
 vim.keymap.set("n", "<leader>on", function()
-    local note = client:create_note()
-    client:open_note(note)
+    local note = client.create_note(client)
+    client.open_note(client, note)
 end)
 
 vim.keymap.set("n", "<leader>ot", function()
@@ -45,3 +46,7 @@ vim.keymap.set("n", "<leader>ot", function()
     client.open_note(client, note)
 end)
 
+vim.keymap.set("n", "<leader>oq", function()
+    client:command("ObsidianTags", {fargs = {}})
+end
+)
