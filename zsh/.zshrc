@@ -120,3 +120,4 @@ eval "$(pyenv virtualenv-init -)"
 
 # Created by `pipx` on 2024-03-28 12:17:36
 export PATH="$PATH:/Users/lennart/.local/bin"
+autoload -Uz compinit && compinit
