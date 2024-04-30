@@ -117,3 +117,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2024-03-28 12:17:36
+export PATH="$PATH:/Users/lennart/.local/bin"

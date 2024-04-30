@@ -1,6 +1,6 @@
 #!/bin/bash
 
-container_name=$(docker ps --format "{{.Names}}" | fzf --select-1 --query "$1" --exact ) 
+container_name=$(docker ps --all --format "{{.Names}}" | fzf --select-1 --query "$1" --exact ) 
 echo $container_name
 echo $container_name | pbcopy
 

@@ -17,7 +17,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'eslint', 'pylsp', },
+    ensure_installed = { 'eslint', 'pylsp', 'sqlls'},
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -35,8 +35,23 @@ cmp.setup({
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+        { name = 'buffer', keyword_length = 5},
+        { name = 'vim-dadbod-completion' },
     },
-    formatting = lsp_zero.cmp_format(),
+    formatting = {
+        fields = {'menu', 'abbr', 'kind'},
+        format = function(entry, item)
+            local menu = {
+                buffer = "[buf]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[api]",
+                path = "[path]",
+                luasnip = "[snip]",
+           }
+           item.menu = menu[entry.source_name]
+           return item
+        end
+    },
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -57,3 +72,4 @@ require('lspconfig').pylsp.setup {
         }
     }
 }
+

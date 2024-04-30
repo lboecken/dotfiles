@@ -68,6 +68,7 @@ else
     tmux new-window -a -n "aux" -t "$session_name:main" -c $session
     tmux split-window -h -t "$session_name:aux" -c $session
 
+    echo $session_name
     if [[ "$build_container" ]]; then
         pane_cmd="./dev build && ./dev up"
     else

@@ -21,7 +21,7 @@ return require('packer').startup({
         -- Harpoon
         use { "theprimeagen/harpoon", lock = true }
         -- Undotree
-        use { "mbbill/undotree", lock = true}
+        use { "mbbill/undotree", lock = true }
         -- LSP ZERO
         use {
             'VonHeikemen/lsp-zero.nvim',
@@ -37,7 +37,11 @@ return require('packer').startup({
                 -- Autocompletion
                 { 'hrsh7th/nvim-cmp',                  lock = true },
                 { 'hrsh7th/cmp-nvim-lsp',              lock = true },
+                { 'hrsh7th/cmp-nvim-lua',              lock = true },
+                { 'hrsh7th/cmp-path',                  lock = true },
+                { 'hrsh7th/cmp-buffer',                  lock = true },
                 { 'L3MON4D3/LuaSnip',                  lock = true },
+                { "kristijanhusak/vim-dadbod-completion", lock = true }
             }
         }
         -- Autocompleting brackets
@@ -62,8 +66,11 @@ return require('packer').startup({
         use { 'stevearc/dressing.nvim', lock = true }
         -- smooth scroll
         use { 'karb94/neoscroll.nvim', lock = true }
-        -- obsididan 
+        -- obsididan
         use { 'epwalsh/obsidian.nvim', lock = true }
+        -- DB management
+        use { "tpope/vim-dadbod", lock = true }
+        use { "kristijanhusak/vim-dadbod-ui", lock = true }
     end,
     config = { snapshot_path = "/Users/lennart/dotfiles/packer_logs" }
 })
