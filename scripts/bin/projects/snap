@@ -16,11 +16,22 @@
 #       Start server in left window
 #       Start frontend server in right window. 
 # Check if tmux is running.
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "tmux is NOT running."
+
+fi
+
 line_break="=============="
 
 while getopts "br" flag; do
  case $flag in
    b) 
+   # Switch to the default session. This ensures you don't kill the client 
+   # if the current session is already snap
+   tmux switch-client -t "0"
    tmux kill-session -t snap
    build_container=true
    echo "$line_break"
@@ -36,6 +47,9 @@ while getopts "br" flag; do
    echo "Starting in 3 seconds..."
    echo "$line_break" 
    sleep 3
+   # Switch to the default session. This ensures you don't kill the client 
+   # if the current session is already snap
+   tmux switch-client -t "0"
    tmux kill-session -t snap
    ;;
    \?)
@@ -48,11 +62,6 @@ done
 session=$(find  ~ ~/MyEducator ~/MyEducator/symphony ~/Personal/**  -type d -maxdepth 1 | fzf --query "snap" --select-1 --exact ) 
 session_name=$(basename "$session" | tr . _)
 
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    echo "tmux is NOT running."
-fi
 
 if tmux has-session -t $session_name 2> /dev/null; then
    tmux switch-client -t $session_name
@@ -74,9 +83,13 @@ else
     else
         pane_cmd="./dev up"
     fi
-    tmux send-keys -t "$session_name:aux.left" "$pane_cmd" Enter
+
+    tmux split-window -t "$session_name:aux.left" -c $session
+    tmux send-keys -t "$session_name:aux.0" "$pane_cmd" Enter
+    
     tmux split-window -t "$session_name:aux.right" -c $session
     tmux send-keys -t "$session_name:aux.2" "./dev frontend" Enter
+    tmux send-keys -t "$session_name:aux.1" "./dev server" Enter
 fi
 
 tmux switch-client -t "$session_name:main"
