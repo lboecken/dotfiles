@@ -14,8 +14,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
       vim.notify('Starting compiling: ' .. vim.fn.expand '%:t')
       local fn = vim.fn.expand '%'
       local output_fn = vim.fn.expand '%:p:h' .. '/main'
-
-      local output = vim.fn.system { 'clang', fn, '-o', output_fn }
+      vim.fn.system { 'clang', fn, '-o', output_fn }
       vim.notify 'Finished compiling. No guarantee of success =P'
     end, { desc = '[C]ompile current file using clang. Output to "main" ', buffer = 0 })
   end,

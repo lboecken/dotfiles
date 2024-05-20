@@ -24,6 +24,10 @@
 require 'core.options'
 require 'core.keymaps'
 
+-- [[ custom modules ]]
+require 'custom.snap_test_runner'
+require 'custom.c_autocompile'
+
 -- [[ lazy config bootstrap ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -44,12 +48,12 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup {
+  -- vim/tmux navigator
   'christoomey/vim-tmux-navigator',
   -- Adjust 'shiftwidth' and 'expandtab' based on project context
   { 'tpope/vim-sleuth' },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-  -- vim/tmux navigator
 
   require 'plugins.neoscroll',
 
@@ -92,10 +96,6 @@ require('lazy').setup {
   { 'kristijanhusak/vim-dadbod-ui' },
 
   { 'kristijanhusak/vim-dadbod-completion' },
-
-  -- require 'custom.c_autocompile',
-
-  -- require 'custom.snap_test_runner',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
