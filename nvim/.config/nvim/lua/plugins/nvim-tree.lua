@@ -36,17 +36,12 @@ return {
     -- Jump to tree
     vim.keymap.set('n', '<leader>pt', function()
       vim.cmd 'NvimTreeFocus'
-    end)
+    end, { desc = 'Open [P]roject [T]ree' })
 
     -- Close the tree
     vim.keymap.set('n', '<leader>pq', function()
       vim.cmd 'NvimTreeClose'
-    end)
-
-    -- Collapse the tree
-    vim.keymap.set('n', '<leader>ph', function()
-      vim.cmd 'NvimTreeCollapse'
-    end)
+    end, { desc = '[Q]uit [P]roject tree' })
 
     -- Collapse the tree except for where there are open buffers
     vim.keymap.set('n', '<leader>pH', function()

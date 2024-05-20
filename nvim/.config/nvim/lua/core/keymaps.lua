@@ -17,18 +17,18 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- save files
-vim.keymap.set({ 'n', 'v' }, '<leader>fs', ':w<CR>')
-vim.keymap.set({ 'n', 'v' }, '<leader>fS', ':wall<CR>')
+vim.keymap.set({ 'n', 'v' }, '<leader>fs', ':w<CR>', { desc = '[S]ave [F]ile' })
+vim.keymap.set({ 'n', 'v' }, '<leader>fS', ':wall<CR>', { desc = '[S]ave all [F]iles' })
 
 -- paste over word w/o losing original paste
-vim.keymap.set('x', '<leader>p', [["_dP]])
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[P]aste w/o losing original paste' })
 
 -- yank to sys clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[Y]ank selection to sys clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank till end of line to sys clipboard' })
 
 -- delete w/o losing original paste
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[D]elete without losing paste' })
 
 -- This is going to get me cancelled
 vim.keymap.set('i', '<C-c>', '<Esc>')
@@ -42,12 +42,10 @@ vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 -- vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable via chmod' })
 
-vim.keymap.set('n', '<leader>vpp', '<cmd>e ~/dotfiles/nvim/.config/nvim/init.lua<CR>')
-
 -- Source file
 vim.keymap.set('n', '<leader><leader>', function()
-  vim.cmd 'so'
-end)
+  vim.cmd 'so %'
+end, { desc = 'Resource current file' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })

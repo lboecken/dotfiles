@@ -4,3 +4,7 @@
 [submodule "tmux/.tmux/plugins/vim-tmux-navigator"]
 	path = tmux/.tmux/plugins/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "tmux/.tmux/plugins/toyko-night-tmux"]
+	path = tmux/.tmux/plugins/toyko-night-tmux
+	url = https://github.com/janoamaral/tokyo-night-tmux
+

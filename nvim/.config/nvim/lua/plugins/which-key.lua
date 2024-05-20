@@ -13,6 +13,9 @@ return {
       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       ['<leader>o'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
+      ['<leader>f'] = { name = '[F]ormat || save [F]ile', _ = 'which_key_ignore' },
+      ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+      ['<leader>p'] = { name = '[P]roject', _ = 'which_key_ignore' },
     }
   end,
 }
