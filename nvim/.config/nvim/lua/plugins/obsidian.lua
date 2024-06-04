@@ -7,6 +7,8 @@ local function branch_name()
   end
 end
 
+local status, builtin = pcall(require, 'telescope.builtin')
+
 return {
   'epwalsh/obsidian.nvim',
   config = function()
@@ -25,6 +27,9 @@ return {
         date_format = '%Y-%m-%d',
         template = 'daily',
       },
+      overrides = {
+        notes_subdir = 'inbox',
+      },
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         local suffix = ''
@@ -37,22 +42,117 @@ return {
     }
 
     local client = require('obsidian').get_client()
+    if not client then
+      vim.notify 'Unable to load client for Obsidian'
+      return
+    end
+    local picker = client:picker 'telescope.nvim'
+    if not picker then
+      vim.notify 'Unable to load picker for Obsidian'
+      return
+    end
+    local t_pickers = require 'telescope.pickers'
+    local t_finders = require 'telescope.finders'
+    local t_previewers = require 'telescope.previewers'
+
+    vim.keymap.set({ 'n', 'v' }, '<leader>op', function()
+      -- Get all files in a certain path
+      local tags = client:list_tags 'project/'
+      picker:pick_tag(tags, {
+        callback = function(tag)
+          local files = client:find_notes(tag)
+          if not files then
+            return
+          end
+          t_pickers
+            .new({}, {
+              prompt_title = tag,
+              finder = t_finders.new_table {
+                title = 'Files',
+                results = files,
+                entry_maker = function(entry)
+                  return {
+                    value = entry,
+                    display = entry.path.filename,
+                    ordinal = entry,
+                  }
+                end,
+              },
+              -- TODO: Search does not take keystroke input.
+              -- Do a grep search of the files something like that
+              previewer = t_previewers.new_termopen_previewer {
+                title = 'Preview',
+                get_command = function(entry, status)
+                  return { 'less', entry.display }
+                end,
+              },
+            })
+            :find()
+        end,
+      })
+    end, { desc = '[O]bsidian [P]rojects' })
+
+    -- TODO: refactor this keybind and the <leader>op one to use the same func
+    -- under the hod
+    vim.keymap.set({ 'n', 'v' }, '<leader>oa', function()
+      -- Get all files in a certain path
+      local tags = client:list_tags 'area/'
+      picker:pick_tag(tags, {
+        callback = function(tag)
+          local files = client:find_notes(tag)
+          if not files then
+            return
+          end
+          t_pickers
+            .new({}, {
+              prompt_title = tag,
+              finder = t_finders.new_table {
+                title = 'Files',
+                results = files,
+                entry_maker = function(entry)
+                  return {
+                    value = entry,
+                    display = entry.path.filename,
+                    ordinal = entry,
+                  }
+                end,
+              },
+              -- TODO: Search does not take keystroke input.
+              -- Do a grep search of the files something like that
+              previewer = t_previewers.new_termopen_previewer {
+                title = 'Preview',
+                get_command = function(entry, status)
+                  return { 'less', entry.display }
+                end,
+              },
+            })
+            :find()
+        end,
+      })
+    end, { desc = '[O]bsidian [P]rojects' })
+
     -- Custom Keybinds
     vim.keymap.set('n', '<leader>on', function()
-      local note = client.create_note(client)
-      client.open_note(client, note)
+      local note = client:create_note {
+        template = 'note',
+        dir = './inbox/',
+      }
+      client:open_note(note)
     end, { desc = '[O]bsidian [N]ew' })
 
     vim.keymap.set('n', '<leader>ot', function()
-      local note = client.today(client)
-      client.open_note(client, note)
+      local note = client:today()
+      client:open_note(note)
     end, { desc = '[O]bsidian [T]oday' })
 
     vim.keymap.set('n', '<leader>oq', function()
       client:command('ObsidianTags', { fargs = {} })
     end, { desc = '[O]bsidian [T]ags' })
 
-    vim.keymap.set({ 'n', 'v' }, '<leader>op', function()
+    vim.keymap.set({ 'n', 'v' }, '<leader>og', ':ObsidianSearch<CR>', { desc = '[G]rep [O]bsidian notes' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>of', ':ObsidianQuickSwitch<CR>', { desc = 'Search notes by path' })
+
+    vim.keymap.set({ 'n', 'v' }, '<leader>oP', function()
       local search = client:find_notes(branch_name())
       local note = nil
       local count = 0
@@ -62,11 +162,12 @@ return {
       if count > 0 then
         note = search[1]
       else
-        note = client.create_note(client, { title = branch_name(), template = 'myed_projects' })
+        note = client:create_note { title = branch_name(), template = 'myed_projects' }
       end
       client.open_note(client, note)
     end, { desc = '[O]bsidian [P]roject' })
 
+    vim.keymap.set({ 'n', 'v' }, '<leader>ob', ':ObsidianBacklinks<CR>', { desc = '[O]bsidian [B]acklinks' })
     vim.keymap.set('n', '<leader>ol', function()
       local search = client:find_notes 'Learning Log'
       local note = nil

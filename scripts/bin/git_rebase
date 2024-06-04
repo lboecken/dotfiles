@@ -3,12 +3,14 @@
 CURRENT_BRANCH="$(git branch --show-current)"
 TARGET_BRANCH="${1:-master}"
 
+# Check for uncommited changes
 if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
 	echo "uncommitted changes on branch"
 	exit 1 
 fi
 echo "ready to rebase"
 
+# Switch to target_branch
 git switch $TARGET_BRANCH &> /dev/null
 if [ $? -ne 0 ];then
 	echo "git switch to $TARGET_BRANCH failed"
@@ -16,21 +18,26 @@ if [ $? -ne 0 ];then
 fi
 echo "switched to $TARGET_BRANCH"
 
+#Update Target Branch
 git pull &> /dev/null
 if [ $? -ne 0 ]; then
 	echo "git pull on $TARGET_BRANCH failed"
-	git switch $CURRENT_BRANCH 
+	git switch $CURRENT_BRANCH &> /dev/null
 	exit 1
 fi
-echo "updated $BRANCH from remote"
+echo "updated $TARGET_BRANCH from remote"
 
-git switch $TARGET_BRANCH &> /dev/null
+# Switch back to current_branch
+git switch $CURRENT_BRANCH &> /dev/null
 if [ $? -ne 0 ]; then
 	echo "git switch back to original failed"
 	exit 1
 fi
 echo "switched back to starting branch"
 
-git rebase $BRANCH && git push --force-with-lease &> /dev/null
+
+# Start rebasing current_branch on top of target_branch
+# Force push ONLY if rebase succeds
+git rebase $TARGET_BRANCH && git push --force-with-lease &> /dev/null
 
 echo "finished rebase & pushed to remote"

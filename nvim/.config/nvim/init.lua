@@ -21,12 +21,10 @@
 
 --]]
 -- [[ core config ]]
+vim.notify 'Loading Core'
 require 'core.options'
 require 'core.keymaps'
-
--- [[ custom modules ]]
-require 'custom.snap_test_runner'
-require 'custom.c_autocompile'
+require 'core.lazy_backup'
 
 -- [[ lazy config bootstrap ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -67,7 +65,7 @@ require('lazy').setup {
 
   require 'plugins.conform',
 
-  require 'plugins.nvim-comp',
+  require 'plugins.nvim-cmp',
 
   require 'plugins.tokyonight',
 
@@ -87,6 +85,8 @@ require('lazy').setup {
 
   require 'plugins.obsidian',
 
+  require 'plugins.oil',
+
   { 'jamestthompson3/nvim-remote-containers' },
 
   { 'tpope/vim-fugitive' },
@@ -98,5 +98,11 @@ require('lazy').setup {
   { 'kristijanhusak/vim-dadbod-completion' },
 }
 
+--[[ custom modules ]]
+require 'custom.snap_test_runner'
+require 'custom.snap_script_runner'
+require 'custom.c_autocompile'
+
+require 'custom.sources.markdown'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts:2 sts:2 sw:2 et

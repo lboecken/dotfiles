@@ -41,6 +41,7 @@ return {
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
 
+    -- TODO: Move these imports out of this file and into init.lua
     require 'custom.snippets.markdown'
     require 'custom.snippets.python'
     cmp.setup {
@@ -95,7 +96,6 @@ return {
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-
       },
       sources = {
         { name = 'nvim_lsp' },
@@ -107,4 +107,3 @@ return {
   end,
 }
 -- vim: ts:2 sts:2 sw:2 et
-

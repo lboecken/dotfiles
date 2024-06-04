@@ -1,7 +1,5 @@
 local status, Job = pcall(require, 'plenary.Job')
 if status == true then
-  -- local Job = require 'plenary.job'
-
   -- Check if the path contains "snap"
   -- Check if file name contains test_
   -- Create keybind for class & function test
@@ -13,7 +11,7 @@ if status == true then
   vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     desc = 'Register keybinds for running tests in snap',
     group = 'snap-testing-keybinding',
-    pattern = { vim.fn.expand '~' .. '/MyEducator/snap/*' .. 'test_*.py' },
+    pattern = { '*/snap/*test_*.py' },
     callback = function()
       vim.keymap.set({ 'n', 'v' }, '<leader>tf', function()
         local file_path = vim.fn.expand('%:.:r'):gsub('/', '.')
@@ -27,7 +25,7 @@ if status == true then
           args = { 'send-keys', '-t', job[1], './dev manage test ' .. file_path, 'Enter' },
         }
         Job:new(send_keys_opts):sync()
-      end, { desc = '[T]est [F]ile' })
+      end, { desc = '[T]est [F]ile', buffer = true })
       vim.keymap.set({ 'n', 'v' }, '<leader>tm', function()
         local func_name = ''
         local class_name = ''
@@ -92,18 +90,19 @@ if status == true then
           args = { 'send-keys', '-t', job[1], './dev manage test ' .. test_path, 'Enter' },
         }
         Job:new(send_keys_opts):sync()
-      end, { desc = '[T]est [M]ethod' })
+      end, { desc = '[T]est [M]ethod', buffer = true })
     end,
   })
 
-  vim.api.nvim_create_autocmd({ 'BufLeave' }, {
-    desc = 'Deregister keybinds for running tests in snap',
-    group = 'snap-testing-keybinding',
-    pattern = { vim.fn.expand '~' .. '/MyEducator/snap/*' .. 'test_*.py' },
-    callback = function()
-      vim.keymap.del({ 'n', 'v' }, '<leader>tf')
-    end,
-  })
+  -- vim.api.nvim_create_autocmd({ 'BufLeave' }, {
+  --   desc = 'Deregister keybinds for running tests in snap',
+  --   group = 'snap-testing-keybinding',
+  --   pattern = { '*/snap/*' .. 'test_*.py' },
+  --   callback = function()
+  --     vim.keymap.del({ 'n', 'v' }, '<leader>tf', { buffer = 0 })
+  --     vim.keymap.del({ 'n', 'v' }, '<leader>tm', { buffer = 0 })
+  --   end,
+  -- })
 
   -- local get_tmux_pane_ids = function()
   --   local job_opts = {
