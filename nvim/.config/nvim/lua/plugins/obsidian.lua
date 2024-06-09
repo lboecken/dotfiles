@@ -90,7 +90,7 @@ return {
             :find()
         end,
       })
-    end, { desc = '[O]bsidian [P]rojects' })
+    end, { desc = 'Search projects' })
 
     -- TODO: refactor this keybind and the <leader>op one to use the same func
     -- under the hod
@@ -129,46 +129,47 @@ return {
             :find()
         end,
       })
-    end, { desc = '[O]bsidian [P]rojects' })
+    end, { desc = 'Search areas' })
 
-    -- Custom Keybinds
     vim.keymap.set('n', '<leader>on', function()
       local note = client:create_note {
         template = 'note',
         dir = './inbox/',
       }
       client:open_note(note)
-    end, { desc = '[O]bsidian [N]ew' })
+    end, { desc = 'Create new note in inbox' })
+
+    -- vim.keymap.set('n', '<leader>ot', function()
+    --   local note = client:today()
+    --   client:open_note(note)
+    -- end, { desc = '[O]bsidian [T]oday' })
 
     vim.keymap.set('n', '<leader>ot', function()
-      local note = client:today()
-      client:open_note(note)
-    end, { desc = '[O]bsidian [T]oday' })
-
-    vim.keymap.set('n', '<leader>oq', function()
       client:command('ObsidianTags', { fargs = {} })
-    end, { desc = '[O]bsidian [T]ags' })
+    end, { desc = 'Search Tags' })
 
     vim.keymap.set({ 'n', 'v' }, '<leader>og', ':ObsidianSearch<CR>', { desc = '[G]rep [O]bsidian notes' })
     vim.keymap.set({ 'n', 'v' }, '<leader>of', ':ObsidianQuickSwitch<CR>', { desc = 'Search notes by path' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>ob', function()
+      local note = client:current_note(vim.fn.bufnr())
+      if not note then
+        return
+      end
+      client:find_backlinks(note)
+    end, { desc = 'Find backlinks for current note' })
 
     vim.keymap.set({ 'n', 'v' }, '<leader>oP', function()
-      local search = client:find_notes(branch_name())
-      local note = nil
-      local count = 0
-      for _ in pairs(search) do
-        count = count + 1
-      end
-      if count > 0 then
-        note = search[1]
-      else
-        note = client:create_note { title = branch_name(), template = 'myed_projects' }
-      end
-      client.open_note(client, note)
-    end, { desc = '[O]bsidian [P]roject' })
+      local note = client:create_note { dir = 'inbox', template = 'project' }
+      client:open_note(note)
+    end, { desc = 'New project note' })
 
-    vim.keymap.set({ 'n', 'v' }, '<leader>ob', ':ObsidianBacklinks<CR>', { desc = '[O]bsidian [B]acklinks' })
-    vim.keymap.set('n', '<leader>ol', function()
+    vim.keymap.set({ 'n', 'v' }, '<leader>ol', function()
+      -- Get link under cursor
+      -- Check if internal or external
+      -- External -> Not supported / yank to clip for now
+      -- Internal open note in current buffer
+    end, { desc = 'Follow link' })
+    vim.keymap.set('n', '<leader>oL', function()
       local search = client:find_notes 'Learning Log'
       local note = nil
       local count = 0
@@ -181,6 +182,6 @@ return {
         note = client.create_note(client, { title = 'Learning Log' })
       end
       client:open_note(note)
-    end, { desc = '[O]bsidian [L]earning' })
+    end, { desc = 'Open Learning Log' })
   end,
 }

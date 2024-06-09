@@ -61,6 +61,7 @@ return {
         },
       },
     }
+    local job_status, Job = pcall(require, 'plenary.Job')
 
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
@@ -87,6 +88,18 @@ return {
         end,
       }
     end, { desc = '[S]earch by [G]rep' })
+
+    vim.keymap.set('n', '<leader>sd', function()
+      if not job_status then
+        vim.notify 'Telescope Diff files failed. Plenary Job not loaded'
+        return
+      end
+      local merge_base_opts = { command = 'git', args = { 'merge-base', 'master', 'HEAD' } }
+      local merge_base = Job:new(merge_base_opts):sync()
+      local diff_files_opts = { command = 'git', args = { 'diff', '--name-only', 'master', merge_base[0] } }
+      local diff_files = Job:new(diff_files_opts):sync()
+      builtin.find_files { search_dirs = diff_files }
+    end, { desc = '[S]earch git diff files since branch creation' })
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
