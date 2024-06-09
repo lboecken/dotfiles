@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 TARGET=$HOME
-SOURCE="/Users/lennart/dotfiles/"
+SOURCE=$(pwd)
 
 declare -a STOW_DIRS=( "git" "keyboards" "nvim" "scripts" "tmux" "zsh" )
 
