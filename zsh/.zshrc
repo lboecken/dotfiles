@@ -119,5 +119,5 @@ eval "$(pyenv virtualenv-init -)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Created by `pipx` on 2024-03-28 12:17:36
-export PATH="$PATH:/Users/lennart/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 autoload -Uz compinit && compinit

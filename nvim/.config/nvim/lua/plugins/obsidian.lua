@@ -15,8 +15,8 @@ return {
     require('obsidian').setup {
       workspaces = {
         {
-          name = 'zettelkasten',
-          path = '~/zettelkasten',
+          name = 'pkm',
+          path = vim.fn.expand '$HOME' .. '/pkm',
         },
       },
       templates = {
