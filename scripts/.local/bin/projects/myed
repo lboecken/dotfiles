@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Check if tmux is running
+# Start it if not
+# Check if tmux has myed session
+#   Switch to myed
+# Setup myed windows
+#  MyEd
+#  Snap  
+#  Dserv
+#  Vlib
+#  Vapps
+#  Vserv
+# Check if tmux is running.
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "tmux is NOT running."
+
+fi
+
+line_break="=============="
+
+session_path="~/MyEducator"
+session_name=$(basename "$session_path" | tr . _)
+
+
+if tmux has-session -t $session_name 2> /dev/null; then
+   tmux switch-client -t $session_name
+   exit 0
+else
+    app_name=""
+    window_name="$session_name:$app_name"
+
+    tmux new-session -d -s $session_name -c $session_path -n "main"
+
+    # Main window for code editing, git, etc.
+    tmux split-window -l 25% -t "$session_name:main" -c $session_path
+    tmux send-keys -t "$session_name:main.top" "nvim ." Enter
+    
+    # Snap window
+    app_name="snap"
+    cur_path="$session_path/$app_name"
+    tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
+    tmux split-window -h -t "$window_name" -c $cur_path
+
+    tmux split-window -t "$window_name.left" -c $cur_path
+    tmux send-keys -t "$window_name.0" "./dev up" Enter
+    
+    tmux split-window -t "$window_name.right" -c $cur_path
+    tmux send-keys -t "$window_name.2" "./dev frontend" Enter
+    tmux send-keys -t "$window_name.1" "./dev server" Enter
+
+    # Dserv window
+    app_name="dserv"
+    cur_path="$session_path/$app_name"
+    tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
+    tmux split-window -h -t "$window_name" -c $cur_path
+
+    tmux send-keys -t "$window_name.left" "./dev up" Enter
+
+    app_name="vserv"
+    cur_path="$session_path/$app_name"
+    tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
+    
+    app_name="vapps"
+    cur_path="$session_path/$app_name"
+    tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
+
+    app_name="vlibs"
+    cur_path="$session_path/$app_name"
+    tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
+fi
+
+tmux switch-client -t "$session_name:main"
