@@ -150,13 +150,7 @@ return {
 
     vim.keymap.set({ 'n', 'v' }, '<leader>og', ':ObsidianSearch<CR>', { desc = '[G]rep [O]bsidian notes' })
     vim.keymap.set({ 'n', 'v' }, '<leader>of', ':ObsidianQuickSwitch<CR>', { desc = 'Search notes by path' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>ob', function()
-      local note = client:current_note(vim.fn.bufnr())
-      if not note then
-        return
-      end
-      client:find_backlinks(note)
-    end, { desc = 'Find backlinks for current note' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>ob', ':ObsidianBacklinks<CR>', { desc = 'Find backlinks for current note' })
 
     vim.keymap.set({ 'n', 'v' }, '<leader>oP', function()
       local note = client:create_note { dir = 'inbox', template = 'project' }
