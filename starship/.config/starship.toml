@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-[┌─>](bold green)\[ $directory\] {$git_branch| $git_status$git_state}
+[┌─>](bold green)\[ $directory\] { $git_status| $git_branch$git_state}
 [└─>](bold green) '''
 # Inserts a blank line between shell prompts
 add_newline = true
@@ -16,7 +16,7 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 disabled = true
 
 [git_branch]
-format = '[ $branch(:$remote_branch)]($style) '
+format = '[$branch(:$remote_branch)]($style) '
 
 [git_status]
 up_to_date = '✓'
