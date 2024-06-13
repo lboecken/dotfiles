@@ -2,10 +2,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-[┌─>](bold green)\[ $directory\] \[ $git_branch:$git_status\] $git_state
-[└─>](bold green) '''
-# Inserts a blank line between shell prompts
-add_newline = true
+$git_branch$git_status $git_state
+$directory$character
+'''
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
@@ -16,12 +15,12 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 disabled = true
 
 [git_branch]
-format = '[$branch(:$remote_branch)]($style)'
+format = '\[ [$branch(:$remote_branch)]($style)[:](bold blue)'
 
 [git_status]
-up_to_date = '✓'
-style = 'blue'
-format = '$all_status[:]($style)$ahead_behind '
+up_to_date = '[✓](bold green)'
+style = 'bold blue'
+format = '$all_status[:]($style)$ahead_behind \]'
 untracked = '[u](red)'
 modified = '[m](yellow)'
 staged = '[s](green)'
