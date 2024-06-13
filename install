@@ -3,7 +3,7 @@
 TARGET=$HOME
 SOURCE=$(pwd)
 
-declare -a STOW_DIRS=( "git" "keyboards" "nvim" "scripts" "tmux" "zsh" )
+declare -a STOW_DIRS=( "git" "keyboards" "nvim" "scripts" "tmux" "zsh" "alacritty" "starship")
 
 for folder in "${STOW_DIRS[@]}"
 do
