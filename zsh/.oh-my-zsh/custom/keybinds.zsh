@@ -29,3 +29,6 @@ alias dtf="ts dotf"
 alias hero="ts hero"
 alias pkm="ts pkm"
 
+# bitwarden 
+alias bwp="$HOME/.local/bin/bw_personal"
+alias bww="$HOME/.local/bin/bw_work"
