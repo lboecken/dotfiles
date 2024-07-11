@@ -21,7 +21,6 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     echo "tmux is NOT running."
-
 fi
 
 line_break="=============="
