@@ -23,7 +23,18 @@ if [[ -n "$2" ]]; then
    ${PYENV_ROOT}/versions/python-source-${PYTHON_VER}/bin/pip3 install "$1==$2"
 fi
 
+package_path=$( ${PYENV_ROOT}/versions/python-source-${PYTHON_VER}/bin/python3 -c "import os; import ${1}; print(os.path.dirname(${1}.__file__))")
 
+if [[ "$4" = "vs" ]]; then
+    /usr/local/bin/code $package_path
+    exit 0
+fi
 
-/usr/local/bin/code $( ${PYENV_ROOT}/versions/python-source-${PYTHON_VER}/bin/python3 -c "import os; import ${1}; print(os.path.dirname(${1}.__file__))")
+if [ "$4" = "path_only"]; then
+    export PYSRC_LIBRARY_PATH=$package_path
+    exit 0
+fi
+
+# Default is to use nvim
+$HOME/.local/bin/nvim/bin/nvim --cmd "cd $package_path" $package_path
 
