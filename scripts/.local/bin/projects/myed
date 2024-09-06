@@ -40,7 +40,7 @@ else
     tmux send-keys -t "$session_name:main.top" "nvim ." Enter
     
     # Snap window
-    app_name="snap"
+    app_name="myeducator"
     cur_path="$session_path$app_name"
     tmux new-window -a -n "$app_name" -t "$session_name" -c "$cur_path"
     tmux split-window -h -t "$window_name" -c $cur_path
