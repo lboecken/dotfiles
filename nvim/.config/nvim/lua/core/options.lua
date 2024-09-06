@@ -63,6 +63,13 @@ vim.opt.updatetime = 50
 vim.opt.conceallevel = 1
 vim.opt.colorcolumn = '80'
 
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldcolumn = '0'
+vim.opt.foldtext = ''
+vim.opt.foldlevel = 99
+vim.opt.foldnestmax = 4
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`

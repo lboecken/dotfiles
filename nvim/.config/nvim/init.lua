@@ -81,7 +81,7 @@ require('lazy').setup {
 
   require 'plugins.nvim-tree',
 
-  require 'plugins.noice',
+  -- require 'plugins.noice',
 
   require 'plugins.obsidian',
 
