@@ -1,20 +1,7 @@
 return {
   'karb94/neoscroll.nvim',
   config = function()
-    require('neoscroll').setup {
-      -- Set any options as needed
-    }
-
-    local t = {}
-    -- Syntax: t[keys] = {function, {function arguments}}
-    t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '250' } }
-    t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '250' } }
-    t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-    t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-    t['zt'] = { 'zt', { '250' } }
-    t['zz'] = { 'zz', { '250' } }
-    t['zb'] = { 'zb', { '250' } }
-
-    require('neoscroll.config').set_mappings(t)
+    local local_ns = require 'neoscroll'
+    local_ns.setup {}
   end,
 }

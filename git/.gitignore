@@ -34,4 +34,5 @@ Temporary Items
 __pycache__
 package-lock.json
 .vscode
+venv
 

@@ -83,8 +83,6 @@ require('lazy').setup {
 
   -- require 'plugins.noice',
 
-  require 'plugins.obsidian',
-
   require 'plugins.oil',
 
   { 'jamestthompson3/nvim-remote-containers' },
