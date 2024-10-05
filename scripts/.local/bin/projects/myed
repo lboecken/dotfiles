@@ -22,7 +22,7 @@ fi
 
 line_break="=============="
 
-session_path="$HOME/MyEducator/"
+session_path="$HOME/work/"
 session_name=$(basename "$session_path" | tr . _)
 
 

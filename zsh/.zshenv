@@ -6,3 +6,5 @@ alias dtf="ts dotf"
 alias hero="ts hero"
 alias zk="ts zettelkasten"
 alias nvim="$HOME/.local/bin/nvim/bin/nvim"
+
+export MANPAGER='$HOME/.local/bin/nvim/bin/nvim +Man!'

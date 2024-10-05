@@ -53,7 +53,7 @@ require('lazy').setup {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  require 'plugins.neoscroll',
+  -- require 'plugins.neoscroll',
 
   require 'plugins.gitsigns',
 
@@ -101,6 +101,5 @@ require 'custom.snap_test_runner'
 require 'custom.snap_script_runner'
 require 'custom.c_autocompile'
 
-require 'custom.sources.markdown'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts:2 sts:2 sw:2 et

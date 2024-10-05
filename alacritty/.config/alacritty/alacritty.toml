@@ -8,7 +8,9 @@ italic = { family = "CommitMono Nerd Font", style = "Italic" }
 bold_italic = { family = "CommitMono Nerd Font", style = "BoldItalic" }
 
 [keyboard]
-# Disable New Tab (MacOS thing)
 bindings = [
+# Disable New Tab (MacOS thing)
 { key = 'T', mods = "Command", action = 'None'},
+{ key = 'Left', mods = "Alt", chars = "\u001BB"},
+{ key = 'Right', mods = "Alt", chars = "\u001BF"},
 ]

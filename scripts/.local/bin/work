@@ -1,0 +1,89 @@
+#!/bin/bash
+
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "tmux is NOT running."
+
+fi
+
+vlib() {
+    if tmux has-session -t "vlib" 2> /dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -c $HOME/work/vlib -s "vlib"
+    tmux rename-window -t "vlib:1" "nvim"
+    tmux send-keys -t "vlib:nvim" "nvim ." Enter
+}
+
+snap() {
+    if tmux has-session -t "myeducator" 2> /dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -s "myeducator" -c $HOME/work/myeducator
+
+    tmux rename-window -t "myeducator:1" "nvim"
+    tmux send-keys -t "myeducator:nvim" "nvim ." Enter
+
+    tmux new-window -a -n "server" -t "myeducator:nvim" -c $HOME/work/myeducator
+    tmux split-window -h -t "myeducator:server" -c $HOME/work/myeducator
+    tmux split-window  -t "myeducator:server.left" -c $HOME/work/myeducator
+    tmux split-window  -t "myeducator:server.right" -c $HOME/work/myeducator
+
+    tmux send-keys -t "myeducator:server.0" "./dev up" Enter
+    tmux send-keys -t "myeducator:server.1" "sleep 10 && ./dev server" Enter
+    tmux send-keys -t "myeducator:server.2" "sleep 10 && ./dev frontend" Enter
+
+    tmux new-window -a  -n "vlib" -t "myeducator:server" -c $HOME/work/snap-vlib
+    tmux send-keys -t "myeducator:vlib" "nvim ." Enter
+}
+
+dserv() {
+    if tmux has-session -t "dserv" 2> /dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -c $HOME/work/dserv -s "dserv"
+    tmux rename-window -t "dserv:1" "nvim"
+    tmux send-keys -t "dserv:nvim" "nvim ." Enter
+
+    tmux new-window -a -n "server" -t "dserv:nvim" -c $HOME/work/dserv
+    tmux split-window -h -t "dserv:server" -c $HOME/work/dserv
+    tmux split-window  -t "dserv:server.right" -c $HOME/work/dserv
+    tmux send-keys -t "dserv:server.left" "./dev up" Enter
+
+    tmux new-window -a  -n "vlib" -t "dserv:server" -c $HOME/work/dserv-vlib
+    tmux send-keys -t "dserv:vlib" "nvim ." Enter
+}
+
+vserv() {
+    if tmux has-session -t "vserv" 2> /dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -c $HOME/work/vserv -s "vserv"
+    tmux rename-window -t "vserv:1" "nvim"
+    tmux send-keys -t "vserv:nvim" "nvim ." Enter
+}
+
+vapps() {
+    if tmux has-session -t "vapps" 2> /dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -c $HOME/work/vapps -s "vapps"
+    tmux rename-window -t "vapps:1" "nvim"
+    tmux send-keys -t "vapps:nvim" "nvim ." Enter
+}
+
+vlib
+snap
+dserv
+vapps
+vserv
+
+tmux list-sessions -f '#{m:*work*,#{session_path}}' -F '#{session_name}' | fzf --query "$1" --select-1 --exact | xargs -I_ tmux switch-client -t _
+
