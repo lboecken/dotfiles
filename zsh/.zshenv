@@ -1,10 +1,10 @@
 # Commands to quickly navigate between projects
-alias snap="$HOME/.local/bin/projects/snap" # Script for nav & tmux setup
-alias vserv="ts vserv"
-alias vapp="ts vapp"
-alias dtf="ts dotf"
-alias hero="ts hero"
-alias zk="ts zettelkasten"
+alias snap="work myeducator"
+alias dserv="work dserv"
+alias vlib="work vlib"
+alias vserv="work vserv"
+alias vapp="work vapps"
+alias dtf="tmux_sessionizer dotf"
 alias nvim="$HOME/.local/bin/nvim/bin/nvim"
 
 export MANPAGER='$HOME/.local/bin/nvim/bin/nvim +Man!'

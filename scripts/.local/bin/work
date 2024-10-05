@@ -39,6 +39,8 @@ snap() {
 
     tmux new-window -a  -n "vlib" -t "myeducator:server" -c $HOME/work/snap-vlib
     tmux send-keys -t "myeducator:vlib" "nvim ." Enter
+
+    tmux select-window -t "myeducator:nvim"
 }
 
 dserv() {
@@ -57,6 +59,8 @@ dserv() {
 
     tmux new-window -a  -n "vlib" -t "dserv:server" -c $HOME/work/dserv-vlib
     tmux send-keys -t "dserv:vlib" "nvim ." Enter
+    
+    tmux select-window -t "dserv:nvim"
 }
 
 vserv() {
