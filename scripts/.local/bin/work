@@ -71,6 +71,11 @@ vserv() {
     tmux new-session -d -c $HOME/work/vserv -s "vserv"
     tmux rename-window -t "vserv:1" "nvim"
     tmux send-keys -t "vserv:nvim" "nvim ." Enter
+
+    tmux new-window -a -n "server" -t "vserv:nvim" -c $HOME/work/dserv
+    tmux split-window -h -t "vserv:server" -c $HOME/work/dserv
+
+    tmux select-window -t "vserv:nvim"
 }
 
 vapps() {

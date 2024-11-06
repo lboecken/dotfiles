@@ -73,6 +73,8 @@ require('lazy').setup {
 
   require 'plugins.mini',
 
+  require 'plugins.fugitive',
+
   require 'plugins.treesitter',
 
   require 'plugins.harpoon',
