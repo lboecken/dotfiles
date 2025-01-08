@@ -68,8 +68,6 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window'
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<leader>di', ':%s/import pdb; pdb.set_trace()//g<CR>', { desc = 'Delete all import pdb statements' })
-
 vim.keymap.set('n', '<leader>js', ':!work myed<CR><CR>', { desc = 'Jump to snap' })
 vim.keymap.set('n', '<leader>jd', ':!work dserv<CR><CR>', { desc = 'Jump to dserv' })
 vim.keymap.set('n', '<leader>jl', ':!work vlib<CR><CR>', { desc = 'Jump to vlib' })

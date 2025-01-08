@@ -55,6 +55,10 @@ require('lazy').setup {
 
   -- require 'plugins.neoscroll',
 
+  require 'plugins.blame',
+
+  require 'plugins.autotag',
+
   require 'plugins.gitsigns',
 
   require 'plugins.which-key',
@@ -82,6 +86,8 @@ require('lazy').setup {
   require 'plugins.nvim-toggler',
 
   require 'plugins.nvim-tree',
+
+  require 'plugins.zen',
 
   -- require 'plugins.noice',
 

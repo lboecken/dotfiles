@@ -18,7 +18,7 @@ return {
       -- removes the default set of inverses
       -- remove_default_inverses = true,
       -- custom keybinding if wanted
-      vim.keymap.set({ 'n', 'v' }, '<leader>ei', require('nvim-toggler').toggle, { desc = '[E]dit conditionals by [I]nverting' }),
+      vim.keymap.set({ 'n', 'v' }, '<leader>di', require('nvim-toggler').toggle, { desc = '[C]ode edit conditionals by [I]nverting' }),
     }
   end,
 }

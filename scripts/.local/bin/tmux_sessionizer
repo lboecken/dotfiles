@@ -1,6 +1,6 @@
 #!/bin/bash
 
-session=$( ( find ~/work/ ~/personal -type d -maxdepth 1; find ~ -type d -maxdepth 1 ) | fzf --query "$1" --select-1 --exact ) 
+session=$( ( find ~/work/ ~/personal ~/advent -type d -maxdepth 1; find ~ -type d -maxdepth 1 ) | fzf --query "$1" --select-1 --exact ) 
 
 if [[ -z $session ]]; then
     exit 0

@@ -41,6 +41,7 @@ alt-z = 'workspace Z' # Zoom
 alt-c = 'workspace C' # SMS / iMessage
 alt-o = 'workspace O' # Obsidian
 alt-d = 'workspace D' # Docker Desktop
+alt-v = 'workspace V' # VS
 
 
 cmd-shift-1 = 'move-node-to-workspace 1'
@@ -82,7 +83,7 @@ run = [ 'move-node-to-workspace T']
 
 [[on-window-detected]]
 if.app-id = 'com.linear'
-run = [ 'move-node-to-workspace L']
+run = [ 'move-node-to-workspace S']
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
@@ -109,3 +110,7 @@ run = [ 'move-node-to-workspace O' ]
 [[on-window-detected]]
 if.app-id = 'com.electron.dockerdesktop'
 run = [ 'move-node-to-workspace D' ]
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = [ 'move-node-to-workspace V' ]
