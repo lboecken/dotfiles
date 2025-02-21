@@ -75,6 +75,9 @@ return {
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files { hidden = true, no_ignore = false }
     end, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader>sa', function()
+      builtin.find_files { hidden = true, no_ignore = true }
+    end, { desc = '[S]earch [A]ll Files' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch abtive | hidden [B]uffers' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })

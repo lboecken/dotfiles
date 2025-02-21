@@ -72,3 +72,9 @@ vim.keymap.set('n', '<leader>js', ':!work myed<CR><CR>', { desc = 'Jump to snap'
 vim.keymap.set('n', '<leader>jd', ':!work dserv<CR><CR>', { desc = 'Jump to dserv' })
 vim.keymap.set('n', '<leader>jl', ':!work vlib<CR><CR>', { desc = 'Jump to vlib' })
 vim.keymap.set('n', '<leader>jc', ':!tmux_sessionizer dotf <CR><CR>', { desc = 'Jump to dotfiles' })
+
+-- More sane window resizing
+vim.keymap.set('n', '<C-w>+', '<C-w>10+', { desc = 'Increase window height' })
+vim.keymap.set('n', '<C-w>-', '<C-w>10-', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-w>>', '<C-w>10>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<C-w><', '<C-w>10<', { desc = 'Decrease window width' })
