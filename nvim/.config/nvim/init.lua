@@ -71,7 +71,8 @@ require('lazy').setup {
 
   require 'plugins.nvim-cmp',
 
-  require 'plugins.tokyonight',
+  -- require 'plugins.tokyonight',
+  require 'styles.nightfox',
 
   require 'plugins.todo-comments',
 
@@ -88,6 +89,8 @@ require('lazy').setup {
   require 'plugins.nvim-tree',
 
   require 'plugins.zen',
+
+  require 'plugins.lazygit',
 
   -- require 'plugins.noice',
 
