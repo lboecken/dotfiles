@@ -11,6 +11,7 @@ bold_italic = { family = "CommitMono Nerd Font", style = "BoldItalic" }
 bindings = [
 # Disable New Tab (MacOS thing)
 { key = 'T', mods = "Command", action = 'None'},
+{ key = 'Enter', mods = "Alt", action = 'None'},
 { key = 'Left', mods = "Alt", chars = "\u001BB"},
 { key = 'Right', mods = "Alt", chars = "\u001BF"},
 ]
