@@ -8,7 +8,7 @@ return {
   config = function()
     local zen_mode = require 'zen-mode'
     vim.keymap.set('n', '<leader>z', function()
-      zen_mode.toggle { window = { width = 0.75 } }
+      zen_mode.toggle { window = { width = 0.3 } }
     end, { desc = 'Toggle [Z]en mode' })
   end,
 }

@@ -1,11 +1,10 @@
 #!/bin/bash
 
 
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    echo "tmux is NOT running."
-
+pgrep tmux
+if [ $? -ne 0 ]; then
+    echo "tmux is not running. Start it and run this cmd again."
+    return 1
 fi
 
 vlib() {

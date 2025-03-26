@@ -7,23 +7,10 @@ local r = extras.rep
 local f = ls.function_node
 
 ls.add_snippets('python', {
-  s('trace', {
-    t 'import pdb; pdb.set_trace()',
+  s('bp', {
+    t 'breakpoint()',
   }),
 })
-
--- ls.add_snippets('python', {
---   s('listc', {
---     t '[ ',
---     r(2),
---     i(3),
---     t 'for ',
---     i(2),
---     t ' in ',
---     i(1),
---     t ' ]',
---   }),
--- })
 
 local function get_matching_bracket(args, parent, user_args)
   local brackets = {}
