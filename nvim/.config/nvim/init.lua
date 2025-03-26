@@ -53,13 +53,13 @@ require('lazy').setup {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- require 'plugins.neoscroll',
+  require 'plugins.neoscroll',
 
   require 'plugins.blame',
 
   require 'plugins.autotag',
 
-  require 'plugins.gitsigns',
+  -- require 'plugins.gitsigns',
 
   require 'plugins.which-key',
 
@@ -71,7 +71,6 @@ require('lazy').setup {
 
   require 'plugins.nvim-cmp',
 
-  -- require 'plugins.tokyonight',
   require 'styles.nightfox',
 
   require 'plugins.todo-comments',
@@ -92,13 +91,7 @@ require('lazy').setup {
 
   require 'plugins.lazygit',
 
-  -- require 'plugins.noice',
-
   require 'plugins.oil',
-
-  { 'jamestthompson3/nvim-remote-containers' },
-
-  { 'tpope/vim-fugitive' },
 
   { 'tpope/vim-dadbod' },
 
@@ -110,7 +103,6 @@ require('lazy').setup {
 --[[ custom modules ]]
 require 'custom.snap_test_runner'
 require 'custom.snap_script_runner'
-require 'custom.c_autocompile'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts:2 sts:2 sw:2 et

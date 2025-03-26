@@ -20,10 +20,8 @@ return { -- Collection of various small independent plugins/modules
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin
     local statusline = require 'mini.statusline'
-    -- set use_icons to true if you have a Nerd Font
     statusline.setup { use_icons = vim.g.have_nerd_font }
 
-    -- You can configure sections in the statusline by overriding theirmini statusline default behavior. For example, here we set the section for
     -- cursor location to LINE:COLUMN
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
@@ -36,7 +34,7 @@ return { -- Collection of various small independent plugins/modules
     local location = MiniStatusline.section_location { trunc_width = 75 }
     local search = MiniStatusline.section_searchcount { trunc_width = 75 }
 
-    MiniStatusline.combine_groups {
+    local line = MiniStatusline.combine_groups {
       { hl = mode_hl, strings = { mode } },
       { hl = 'MiniStatuslineDevinfo', strings = { lsp } },
       '%<', -- Mark general truncate point
@@ -44,6 +42,17 @@ return { -- Collection of various small independent plugins/modules
       '%=', -- End left alignment
       { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
       { hl = mode_hl, strings = { search, location } },
+    }
+    statusline.setup {
+      use_icons = vim.g.have_nerd_font,
+      content = {
+        active = function()
+          return line
+        end,
+        inactive = function()
+          return line
+        end,
+      },
     }
 
     -- Autopair

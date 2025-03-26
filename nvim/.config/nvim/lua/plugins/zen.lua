@@ -1,14 +1,22 @@
 return {
   'folke/zen-mode.nvim',
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
   config = function()
     local zen_mode = require 'zen-mode'
+    zen_mode.setup {
+      window = { width = 0.4 },
+      on_open = function(win)
+        vim.o.wrap = true
+        vim.o.linebreak = true
+      end,
+      on_close = function(win)
+        vim.o.wrap = false
+        vim.o.linebreak = false
+      end,
+    }
     vim.keymap.set('n', '<leader>z', function()
-      zen_mode.toggle { window = { width = 0.3 } }
-    end, { desc = 'Toggle [Z]en mode' })
+      zen_mode.toggle {}
+    end, {
+      desc = 'Toggle [Z]en mode',
+    })
   end,
 }
