@@ -91,3 +91,7 @@ vim.opt.fillchars = {
   verthoriz = '╋',
 }
 vim.opt.colorcolumn = { 0 }
+
+-- Better lazygit settings
+vim.g.lazygit_use_custom_config_file_path = 1
+vim.g.lazygit_config_file_path = '$HOME/.config/lazygit/config.yml'

@@ -1,0 +1,4 @@
+keybinding:
+  universal:
+    prevBlock-alt: l
+    nextBlock-alt: h
