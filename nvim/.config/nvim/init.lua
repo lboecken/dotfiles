@@ -53,13 +53,12 @@ require('lazy').setup {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  require 'plugins.neoscroll',
-
   require 'plugins.blame',
 
-  require 'plugins.autotag',
+  -- require 'plugins.autotag',
+  -- Disabled 27.0.25
 
-  -- require 'plugins.gitsigns',
+  require 'plugins.gitsigns',
 
   require 'plugins.which-key',
 
@@ -71,13 +70,9 @@ require('lazy').setup {
 
   require 'plugins.nvim-cmp',
 
-  require 'styles.nightfox',
-
   require 'plugins.todo-comments',
 
   require 'plugins.mini',
-
-  require 'plugins.fugitive',
 
   require 'plugins.treesitter',
 
@@ -92,6 +87,13 @@ require('lazy').setup {
   require 'plugins.lazygit',
 
   require 'plugins.oil',
+
+  -- require 'styles.nightfox',
+  require 'styles.catppuccin',
+
+  { 'jamestthompson3/nvim-remote-containers' },
+
+  { 'tpope/vim-fugitive' },
 
   { 'tpope/vim-dadbod' },
 

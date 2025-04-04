@@ -93,5 +93,4 @@ dserv
 vapps
 vserv
 
-tmux list-sessions -f '#{m:*work*,#{session_path}}' -F '#{session_name}' | fzf --query "$1" --select-1 --exact | xargs -I_ tmux switch-client -t _
-
+tmux list-sessions -f '#{m:*work*,#{session_path}}' -F '#{session_name}' | fzf --query "$1" --select-1 --exact | xargs -I_ sh -c 'tmux switch-client -t _; tmux send-keys -R'

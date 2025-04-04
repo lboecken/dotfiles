@@ -1,0 +1,2 @@
+#! /bin/zsh
+man -P cat $1 | col -b | sed -n -e '/^\s*$/d;/^[A-Z ]*$/p' | fzf | xargs -I_ man -P 'less +/^_' $1

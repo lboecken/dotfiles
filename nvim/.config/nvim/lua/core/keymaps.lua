@@ -78,3 +78,57 @@ vim.keymap.set('n', '<C-w>+', '<C-w>10+', { desc = 'Increase window height' })
 vim.keymap.set('n', '<C-w>-', '<C-w>10-', { desc = 'Decrease window height' })
 vim.keymap.set('n', '<C-w>>', '<C-w>10>', { desc = 'Increase window width' })
 vim.keymap.set('n', '<C-w><', '<C-w>10<', { desc = 'Decrease window width' })
+
+-- Terminal updates
+-- Make <C-h>, <C-j>, <C-k>, <C-l> work for navigating between windows
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('t', '<C-h>', [[<C-\><C-n><C-w>h]], opts)
+vim.api.nvim_set_keymap('t', '<C-j>', [[<C-\><C-n><C-w>j]], opts)
+vim.api.nvim_set_keymap('t', '<C-k>', [[<C-\><C-n><C-w>k]], opts)
+vim.api.nvim_set_keymap('t', '<C-l>', [[<C-\><C-n><C-w>l]], opts)
+
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], opts)
+
+-- Open a new terminal in a split
+vim.api.nvim_set_keymap('n', '<leader>tt', ':split | terminal<CR>', opts) -- Horizontal
+vim.api.nvim_set_keymap('n', '<leader>tv', ':vsplit | terminal<CR>', opts) -- Vertical
+
+-- Toggle terminal mode easily with <C-\>
+vim.api.nvim_set_keymap('t', '<C-\\>', [[<C-\><C-n>]], opts)
+
+-- Handy maximize function.
+local function toggle_maximize_buffer()
+  local open = true
+  local tab_label = 'MAXIMIZE'
+
+  while true do
+    local found_tab = nil
+    local tabpages = vim.api.nvim_list_tabpages()
+
+    for _, tp in ipairs(tabpages) do
+      local success, var_value = pcall(vim.api.nvim_tabpage_get_var, tp, tab_label)
+      if success and var_value == tab_label then
+        found_tab = tp
+        break
+      end
+    end
+
+    if found_tab then
+      vim.api.nvim_set_current_tabpage(found_tab)
+      vim.cmd 'tabclose'
+      open = false
+      break
+    else
+      break -- Exit the loop if the tab is not found
+    end
+  end
+
+  if open then
+    vim.cmd 'tabedit %'
+    vim.api.nvim_tabpage_set_var(0, tab_label, tab_label)
+  end
+end
+
+vim.keymap.set('n', '<leader>m', toggle_maximize_buffer, { desc = 'Toggle [M]aximize Buffer in New Tab' })
+
+vim.keymap.set('n', '<leader>m', toggle_maximize_buffer, { desc = 'Toggle [M]aximize Buffer in New Tab' })

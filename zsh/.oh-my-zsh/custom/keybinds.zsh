@@ -32,3 +32,6 @@ alias pkm="ts pkm"
 # bitwarden 
 alias bwp="$HOME/.local/bin/bw_personal"
 alias bww="$HOME/.local/bin/bw_work"
+
+# better man pages
+alias nman="$HOME/.local/bin/nman"
