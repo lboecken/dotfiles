@@ -16,7 +16,12 @@ return {
     vim.keymap.set('n', '<leader>z', function()
       zen_mode.toggle {}
     end, {
-      desc = 'Toggle [Z]en mode',
+      desc = 'Toggle [z]en mode desktop',
+    })
+    vim.keymap.set('n', '<leader>Z', function()
+      zen_mode.toggle { window = { width = 0.8 } }
+    end, {
+      desc = 'Toggle [Z]en mode laptop',
     })
   end,
 }
