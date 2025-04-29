@@ -3,7 +3,7 @@ return {
   config = function()
     local zen_mode = require 'zen-mode'
     zen_mode.setup {
-      window = { width = 0.4 },
+      window = { width = 0.6 },
       on_open = function(win)
         vim.o.wrap = true
         vim.o.linebreak = true

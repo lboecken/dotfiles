@@ -30,12 +30,6 @@ vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank till end of line to s
 -- delete w/o losing original paste
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[D]elete without losing paste' })
 
--- This is going to get me cancelled
-vim.keymap.set('i', '<C-c>', '<Esc>')
-
--- kill Q
-vim.keymap.set('n', 'Q', '<nop>')
-
 -- Format
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
