@@ -1,10 +1,9 @@
 [user]
 	email = lsboecken@gmail.com
 	name = Lennart Boecken
-
 [core]
 	excludesfile = /Users/lennart/.gitignore
-	editor = "~/.local/bin/nvim/bin/nvim"
+	editor = "~/.local/nvim/bin/nvim"
 [rerere]
 	enabled = false
 [push]
@@ -12,4 +11,8 @@
 [safe]
 	directory = /home/lennart/snap
 [help]
-    autocorrect = 1
+	autocorrect = 1
+[alias]
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	lg = lg1

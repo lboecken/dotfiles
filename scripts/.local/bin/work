@@ -3,8 +3,7 @@
 
 pgrep tmux
 if [ $? -ne 0 ]; then
-    echo "tmux is not running. Start it and run this cmd again."
-    return 1
+    tmux new-session -d
 fi
 
 vlib() {
@@ -71,8 +70,11 @@ vserv() {
     tmux rename-window -t "vserv:1" "nvim"
     tmux send-keys -t "vserv:nvim" "nvim ." Enter
 
-    tmux new-window -a -n "server" -t "vserv:nvim" -c $HOME/work/dserv
-    tmux split-window -h -t "vserv:server" -c $HOME/work/dserv
+    tmux new-window -a -n "server" -t "vserv:nvim" -c $HOME/work/vserv
+    tmux split-window -h -t "vserv:server" -c $HOME/work/vserv
+
+    tmux new-window -a  -n "vlib" -t "vserv:server" -c $HOME/work/vserv-vlib
+    tmux send-keys -t "vserv:vlib" "nvim ." Enter
 
     tmux select-window -t "vserv:nvim"
 }
@@ -93,4 +95,4 @@ dserv
 vapps
 vserv
 
-tmux list-sessions -f '#{m:*work*,#{session_path}}' -F '#{session_name}' | fzf --query "$1" --select-1 --exact | xargs -I_ sh -c 'tmux switch-client -t _; tmux send-keys -R'
+tmux list-sessions -f '#{m:*work*,#{session_path}}' -F '#{session_name}' | fzf --query "$1" --select-1 --exact | xargs -I_ sh -c 'tmux switch-client -t _ || tmux attach -t _; tmux send-keys -R'

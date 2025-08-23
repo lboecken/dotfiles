@@ -1,7 +1,0 @@
-if [[ $# -eq 0 ]]; then
-echo "Usage: nw <window_name>"
-exit 
-fi
-
-tmux neww -n "$1" -c $(pwd)
-
