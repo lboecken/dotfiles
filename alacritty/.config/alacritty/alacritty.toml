@@ -13,7 +13,6 @@ italic = { family = "DejaVuSansM Nerd Font", style = "Oblique" }
 bold_italic = { family = "DejaVuSansM Nerd Font", style = "Bold Oblique" }
 size = 14
 
-
 [keyboard]
 bindings = [
 # Disable New Tab (MacOS thing)
