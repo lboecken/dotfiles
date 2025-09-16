@@ -6,11 +6,12 @@ if [[ -z "$1" ]]; then
 fi
 
 PYTHON_VER="${2:-3.13}"
+PACKAGE_NAME=$(echo $1 | cut -d= -f1)
 
-package_path=$(uv run --with "$1" --python "${2:-3.13}" python -c "
-import $1
+package_path=$(uv run --no-project --with "$1" --python "${2:-3.13}" python -c "
+import $PACKAGE_NAME
 import pathlib
-print(str(pathlib.Path($1.__file__).parent))
+print(str(pathlib.Path($PACKAGE_NAME.__file__).parent))
 ")
 
 $HOME/.local/nvim/bin/nvim --cmd "cd $package_path" $package_path
