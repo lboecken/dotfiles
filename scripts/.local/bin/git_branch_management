@@ -1,0 +1,11 @@
+#/bin/bash
+
+time=$(date +%s)
+path="/tmp/$time.gitbranchmanager"
+local_branches=$(git branch | awk '{print "i\t", $NF}')
+echo "$local_branches" | $HOME/.local/nvim/bin/nvim - +"file $path"
+while read line; do
+    if [ "$(echo $line | cut -d' ' -f 1)" == "d" ]; then
+        echo $(cut -d' ' -f 2); 
+    fi
+done < $path

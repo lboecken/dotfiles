@@ -1,0 +1,13 @@
+#!/bin/bash
+
+N=${1:-50}
+
+git for-each-ref --format='%(refname:short)' refs/heads/ | while read branch; do
+  if [ "$branch" != "master"  && "$branch" != "main" ]; then
+    merge_base=$(git merge-base master "$branch")
+    commits_since=$(git rev-list --count $merge_base..master)
+    if [ $commits_since -gt $N ]; then
+      "$branch"
+    fi
+  fi
+done

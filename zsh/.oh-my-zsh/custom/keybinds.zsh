@@ -9,10 +9,12 @@ alias ts="$HOME/.local/bin/tmux_sessionizer"
 alias gre="$HOME/.local/bin/git_rebase"
 alias gsm="git switch master"
 alias gsb="$HOME/.local/bin/git_switch"
+alias gblist="$HOME/.local/bin/git_branch_list"
 
 # neovim 
 alias vim="nvim"
 alias nv="nvim ."
+alias nssh="nvim ~/.ssh"
 
 # scripts
 alias pysrc="$HOME/.local/bin/python_source"
@@ -27,7 +29,6 @@ alias vserv="ts vserv"
 alias vapp="ts vapp"
 alias dtf="ts dotf"
 alias hero="ts hero"
-alias pkm="ts pkm"
 
 # bitwarden 
 alias bwp="$HOME/.local/bin/bw_personal"

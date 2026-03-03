@@ -5,7 +5,7 @@
 	excludesfile = /Users/lennart/.gitignore
 	editor = "~/.local/nvim/bin/nvim"
 [rerere]
-	enabled = false
+	enabled = true
 [push]
 	autoSetupRemote = true
 [safe]

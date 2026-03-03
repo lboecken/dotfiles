@@ -88,6 +88,8 @@ require('lazy').setup {
 
   require 'plugins.oil',
 
+  require 'plugins.csvview',
+
   -- require 'styles.nightfox',
   require 'styles.catppuccin',
 

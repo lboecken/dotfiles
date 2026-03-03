@@ -70,9 +70,17 @@ ZSH_THEME="candy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+plugins=(git zsh-syntax-highlighting )
 
-source $ZSH/oh-my-zsh.sh
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
+source "$ZSH/oh-my-zsh.sh"
 source <(fzf --zsh)
 
 # User configuration
@@ -103,12 +111,9 @@ source <(fzf --zsh)
 #
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# Created by `pipx` on 2024-03-28 12:17:36
 export PATH="$PATH:$HOME/.local/bin"
-autoload -Uz compinit && compinit
 
 # Command line manager
 eval "$(starship init zsh)"
@@ -118,3 +123,4 @@ fpath=(/Users/lennart/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+export PATH="/opt/homebrew/bin:$PATH"

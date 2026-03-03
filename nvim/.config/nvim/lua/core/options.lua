@@ -44,6 +44,7 @@ vim.opt.cursorline = true
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
+vim.opt.autoread = true
 vim.opt.backup = false
 vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 vim.opt.undofile = true
@@ -94,4 +95,4 @@ vim.opt.colorcolumn = { 0 }
 
 -- Better lazygit settings
 vim.g.lazygit_use_custom_config_file_path = 1
-vim.g.lazygit_config_file_path = '$HOME/.config/lazygit/config.yml'
+vim.g.lazygit_config_file_path = 'Users/lennart/.config/lazygit/config.yml'

@@ -17,8 +17,8 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- save files
-vim.keymap.set({ 'n', 'v' }, '<leader>fs', ':w<CR>', { desc = '[S]ave [F]ile' })
-vim.keymap.set({ 'n', 'v' }, '<leader>fS', ':wall<CR>', { desc = '[S]ave all [F]iles' })
+vim.keymap.set({ 'n', 'v' }, '<leader>fs', ':w<CR><CR>', { desc = '[S]ave [F]ile' })
+vim.keymap.set({ 'n', 'v' }, '<leader>fS', ':wall<CR><CR>', { desc = '[S]ave all [F]iles' })
 
 -- paste over word w/o losing original paste
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[P]aste w/o losing original paste' })
@@ -34,7 +34,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[D]elete without lo
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
 -- vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable via chmod' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR><CR>', { silent = true, desc = 'Make current file executable via chmod' })
+vim.keymap.set('n', '<leader>F', '<cmd>!echo "%" | pbcopy<CR><CR>', { desc = 'Copy current [F]ile name to clipboard' })
 
 -- Source file
 vim.keymap.set('n', '<leader><leader>', function()
@@ -66,6 +67,7 @@ vim.keymap.set('n', '<leader>js', ':!work myed<CR><CR>', { desc = 'Jump to snap'
 vim.keymap.set('n', '<leader>jd', ':!work dserv<CR><CR>', { desc = 'Jump to dserv' })
 vim.keymap.set('n', '<leader>jl', ':!work vlib<CR><CR>', { desc = 'Jump to vlib' })
 vim.keymap.set('n', '<leader>jc', ':!tmux_sessionizer dotf <CR><CR>', { desc = 'Jump to dotfiles' })
+vim.keymap.set('n', '<leader>ld', ':lcd %:p:h<CR>', { desc = 'Change [L]ocal working [D]irectory to the current buffer path' })
 
 -- More sane window resizing
 vim.keymap.set('n', '<C-w>+', '<C-w>10+', { desc = 'Increase window height' })
